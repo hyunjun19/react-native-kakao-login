@@ -13,11 +13,6 @@ import java.util.List;
 public class KakaoLoginPackage implements ReactPackage {
 
     @Override
-    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.<NativeModule>asList(new KakaoLoginModule(reactContext));
-    }
-
-    @Override
     public List<Class<? extends JavaScriptModule>> createJSModules() {
         return Collections.emptyList();
     }
