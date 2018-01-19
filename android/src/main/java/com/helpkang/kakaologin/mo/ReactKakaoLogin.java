@@ -27,6 +27,9 @@ import com.kakao.usermgmt.callback.MeResponseCallback;
 import com.kakao.usermgmt.response.model.UserProfile;
 import com.kakao.util.exception.KakaoException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.kakao.usermgmt.UserManagement.requestMe;
 
 //import com.kakao.auth.ErrorResult;
@@ -73,9 +76,7 @@ public class ReactKakaoLogin {
         initialize();
         this.sessionCallback = new SessionCallback(promise);
         Session.getCurrentSession().addCallback(sessionCallback);
-        Session.getCurrentSession().open(AuthType.KAKAO_TALK, currentActivity);
-
-
+        Session.getCurrentSession().open(AuthType.KAKAO_LOGIN_ALL, currentActivity);
     }
 
     /**
@@ -106,6 +107,8 @@ public class ReactKakaoLogin {
         response.putString("id", userProfile.getId()+"");
         response.putString("nickname", userProfile.getNickname());
         response.putString("profile_image", userProfile.getProfileImagePath());
+        response.putString("kaccount_email", userProfile.getEmail());
+        response.putString("kaccount_email_verified", String.valueOf(userProfile.getEmailVerified()));
 
         Session currentSession = Session.getCurrentSession();
         response.putString("accessToken", currentSession.getAccessToken());
@@ -132,6 +135,12 @@ public class ReactKakaoLogin {
 
         @Override
         public void onSessionOpened() {
+            List<String> propertyKeys = new ArrayList<String>();
+            propertyKeys.add("kaccount_email");
+            propertyKeys.add("nickname");
+            propertyKeys.add("profile_image");
+            propertyKeys.add("thumbnail_image");
+            
             Log.v(LOG_TAG, "kakao : SessionCallback.onSessionOpened");
             requestMe(new MeResponseCallback() {
                 @Override
@@ -166,12 +175,13 @@ public class ReactKakaoLogin {
                 private void removeCallback(){
                     Session.getCurrentSession().removeCallback(sessionCallback);
                 }
-            });
+            }, propertyKeys, true);
         }
 
         @Override
         public void onSessionOpenFailed(KakaoException exception) {
             if (exception != null) {
+                // 동의안함
                 Log.v(LOG_TAG, "kakao : onSessionOpenFailed" + exception.toString());
             }
         }
@@ -236,11 +246,6 @@ public class ReactKakaoLogin {
         @Override
         public IApplicationConfig getApplicationConfig() {
             return new IApplicationConfig() {
-                @Override
-                public Activity getTopActivity() {
-                    return currentActivity;
-                }
-
                 @Override
                 public Context getApplicationContext() {
                     return currentActivity.getApplicationContext();

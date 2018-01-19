@@ -2,6 +2,7 @@ package com.helpkang.kakaologin;
 
 import android.content.Intent;
 import android.app.Activity;
+import android.util.Log;
 
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Promise;
@@ -13,6 +14,7 @@ import com.kakao.auth.Session;
 
 public class KakaoLoginModule extends ReactContextBaseJavaModule implements ActivityEventListener {
 
+    private static final String LOG_TAG = "KakaoTalk";
     private ReactKakaoLogin rkl;
 
     public KakaoLoginModule(ReactApplicationContext reactContext) {
@@ -47,8 +49,13 @@ public class KakaoLoginModule extends ReactContextBaseJavaModule implements Acti
 
     @Override
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
-        if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)){
-            return;
+        try {
+            if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)){
+                return;
+            }
+        } catch (IllegalStateException ise) {
+            // 초기화 안했을때 로그아웃 시도시 IllegalStateException 떨어져서 앱크래시되는거 막음...
+            Log.w(LOG_TAG, "kakao session is not initialized.");
         }
     }
 
