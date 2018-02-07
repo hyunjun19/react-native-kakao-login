@@ -3,4 +3,4 @@ build/
 .gradle
 local.properties
 *.iml
-
+.DS_store
