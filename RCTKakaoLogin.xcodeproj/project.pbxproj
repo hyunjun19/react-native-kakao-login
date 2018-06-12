@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FC756CA20CF8E87005570E5 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2FC756C920CF8E87005570E5 /* KakaoOpenSDK.framework */; };
 		B349CB731D6D9AD500D406F5 /* RTCKakaoLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = B349CB721D6D9AD500D406F5 /* RTCKakaoLogin.m */; };
-		B349CB761D6D9B6A00D406F5 /* KakaoOpenSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B349CB751D6D9B6A00D406F5 /* KakaoOpenSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,10 +24,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2FC756C920CF8E87005570E5 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KakaoOpenSDK.framework; path = KakaoSDK/KakaoOpenSDK.framework; sourceTree = "<group>"; };
 		B349CB651D6D9A4C00D406F5 /* libRCTKakaoLogin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRCTKakaoLogin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B349CB711D6D9AD500D406F5 /* RTCKakaoLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RTCKakaoLogin.h; sourceTree = "<group>"; };
 		B349CB721D6D9AD500D406F5 /* RTCKakaoLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RTCKakaoLogin.m; sourceTree = "<group>"; };
-		B349CB751D6D9B6A00D406F5 /* KakaoOpenSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KakaoOpenSDK.framework; path = KakaoSDK/KakaoOpenSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B349CB761D6D9B6A00D406F5 /* KakaoOpenSDK.framework in Frameworks */,
+				2FC756CA20CF8E87005570E5 /* KakaoOpenSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,7 +45,7 @@
 		B349CB5C1D6D9A4C00D406F5 = {
 			isa = PBXGroup;
 			children = (
-				B349CB751D6D9B6A00D406F5 /* KakaoOpenSDK.framework */,
+				2FC756C920CF8E87005570E5 /* KakaoOpenSDK.framework */,
 				B349CB671D6D9A4C00D406F5 /* RCTKakaoLogin */,
 				B349CB661D6D9A4C00D406F5 /* Products */,
 			);
